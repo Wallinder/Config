@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgis/postgis:latest
+    container_name: postgres
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+    restart: on-failure
+    healthcheck:
+      test: "exit 0"
